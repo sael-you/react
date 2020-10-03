@@ -9,7 +9,8 @@ class App extends Component {
       {name : "hamza", age : "26"},
       {name : "said", age : "24"},
       {name : "aga", age : "20"}
-    ]
+    ],
+    showPerson: false
   }
 
   switchNameHandler = () => this.setState( {
@@ -26,24 +27,42 @@ class App extends Component {
     this.setState(
       {
         persons : [
-          {name : event.target.value, age : "25"},
+          {name : "saad", age : "25"},
           {name : event.target.value, age : "29"},
-          {name : event.target.value, age : "57"},
-          {name : event.target.value, age : "30"}
+          {name : "said", age : "57"},
+          {name : "agata", age : "30"}
         ]
       }
     )
+  }
+
+  togglePersonHandler = () => {
+    const show = this.state.showPerson;
+    this.setState({showPerson: !show});
   }
 
   render(){
     return (
       <div className="App">
         <h1> hi hello world</h1>
-        <button onClick={this.switchNameHandler}> switch user </button>
-        <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} change= {this.changeNameHandler}/>
-        <Person name = {this.state.persons[1].name} age = {this.state.persons[1].age} change= {this.changeNameHandler}/>      
-        <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} change= {this.changeNameHandler}/>      
-        <Person name = {this.state.persons[3].name} age = {this.state.persons[3].age} change= {this.changeNameHandler}/>             
+        { this.state.showPerson ?
+            <div>
+              <button onClick={this.togglePersonHandler}> Hide users </button>
+              <Person 
+                name = {this.state.persons[0].name} 
+                age = {this.state.persons[0].age} />
+              <Person 
+                name = {this.state.persons[1].name} 
+                age = {this.state.persons[1].age} 
+                change= {this.changeNameHandler}/>      
+              <Person 
+                name = {this.state.persons[2].name} 
+                age = {this.state.persons[2].age} />      
+              <Person 
+                name = {this.state.persons[3].name} 
+                age = {this.state.persons[3].age} />  
+            </div> :  <button onClick={this.togglePersonHandler}> Show users </button>
+        }           
       </div>
     );
   }
