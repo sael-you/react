@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import person from './Person/Person';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -42,27 +43,26 @@ class App extends Component {
   }
 
   render(){
+
+    let persons = null;
+    if (this.state.showPerson)
+      persons = (
+            <div>
+              <button onClick={this.togglePersonHandler}> Hide users </button>
+              {this.state.persons.map(person => {
+                return  <Person 
+                          name = {person.name} 
+                          age = {person.age} />
+              })}
+            </div>
+      );
+    else
+      persons = <button onClick={this.togglePersonHandler}> Show users </button>;
+
     return (
       <div className="App">
         <h1> hi hello world</h1>
-        { this.state.showPerson ?
-            <div>
-              <button onClick={this.togglePersonHandler}> Hide users </button>
-              <Person 
-                name = {this.state.persons[0].name} 
-                age = {this.state.persons[0].age} />
-              <Person 
-                name = {this.state.persons[1].name} 
-                age = {this.state.persons[1].age} 
-                change= {this.changeNameHandler}/>      
-              <Person 
-                name = {this.state.persons[2].name} 
-                age = {this.state.persons[2].age} />      
-              <Person 
-                name = {this.state.persons[3].name} 
-                age = {this.state.persons[3].age} />  
-            </div> :  <button onClick={this.togglePersonHandler}> Show users </button>
-        }           
+        {persons}
       </div>
     );
   }
