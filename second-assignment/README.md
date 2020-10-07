@@ -1,4 +1,4 @@
-<h1>First assignment for the "React - The Complete Guide" course</h1>
+<h1>Second assignment for the "React - The Complete Guide" course</h1>
 <p>In this assignment We explore both the basics of conditional rendering as well as rendering of lists in React</p>
 <h2>So what does this do?</h2>
 <p>This application presents to the user a text input into which the user can type.</p>
